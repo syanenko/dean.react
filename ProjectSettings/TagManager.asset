@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Rocks
+  - Trees
+  - Front
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 2138105117
+    locked: 0
+  - name: Island 3
+    uniqueID: 3361500239
+    locked: 0
+  - name: Island 5
+    uniqueID: 2944348429
+    locked: 0
+  - name: Island 2
+    uniqueID: 1646410013
+    locked: 0
+  - name: Island 1
+    uniqueID: 3293647093
+    locked: 0
+  - name: Island 4
+    uniqueID: 1958641607
+    locked: 0
+  - name: Clouds
+    uniqueID: 2732062061
+    locked: 0
+  - name: Front
+    uniqueID: 3913734659
+    locked: 0
+  - name: Blind
+    uniqueID: 833476643
+    locked: 0
