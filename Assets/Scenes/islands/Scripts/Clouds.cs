@@ -3,14 +3,10 @@ using System.Collections;
 
 public class Clouds : MonoBehaviour {
 
-	void Start ()
+    /* Use defult settings
+    void Start ()
 	{
 		GetComponent<ParticleSystem>().GetComponent<Renderer>().sortingLayerName = "Clouds";
-		GetComponent<ParticleSystem>().GetComponent<Renderer>().sortingOrder = 0;
-	}
-	
-	void Update ()
-	{
-	
-	}
+		GetComponent<ParticleSystem>().GetComponent<Renderer>().sortingOrder = -1;
+	}*/
 }
