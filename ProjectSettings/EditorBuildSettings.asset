@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/main.unity
     guid: ddbc8f26c75bd40469c38f5933998be2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/flights.unity
     guid: bcfc2377d3af0e744b987c1d1ff650f7
   - enabled: 0
     path: Assets/Scenes/islands.unity
     guid: 5c64435a5b9125741a8bacc9746d2494
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/parrot.unity
     guid: c4abb3e9f7dd2a547bcd800c65be9279
   - enabled: 0
