@@ -6,20 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/cover.unity
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/main.unity
+    guid: ddbc8f26c75bd40469c38f5933998be2
   - enabled: 1
     path: Assets/Scenes/flights.unity
-  - enabled: 1
-    path: Assets/Scenes/islands.unity
-  - enabled: 1
-    path: Assets/Scenes/parrot.unity
-  - enabled: 1
-    path: Assets/Scenes/bridge.unity
-  - enabled: 1
-    path: Assets/Scenes/fetch.unity
+    guid: bcfc2377d3af0e744b987c1d1ff650f7
   - enabled: 0
-    path: Assets/Scenes/fetch_1.unity
-  - enabled: 1
+    path: Assets/Scenes/islands.unity
+    guid: 5c64435a5b9125741a8bacc9746d2494
+  - enabled: 0
+    path: Assets/Scenes/parrot.unity
+    guid: c4abb3e9f7dd2a547bcd800c65be9279
+  - enabled: 0
+    path: Assets/Scenes/bridge.unity
+    guid: 454383cb0ba4a8a43a6fd44858a44e2a
+  - enabled: 0
+    path: Assets/Scenes/fetch.unity
+    guid: f2a7732c5768f234596b909dfde32064
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/tfto.unity
+    guid: 575e93ceeba9293429730798b01813d2
+  m_configObjects: {}
