@@ -2,7 +2,7 @@
 
 Animations of [Roger Dean](https://www.rogerdean.com/)'s artworks.
 
-Done with [Unity3D](https://unity.com).
+Done with [Unity3D](https://unity.com), [React.js](https://reactjs.org/) and [Material-UI](https://material-ui.com/).
 
 Live demo: http://yesbird.ru
 
