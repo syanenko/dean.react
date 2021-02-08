@@ -1,0 +1,10 @@
+{
+    "editor.occurrencesHighlight": false,
+    "editor.fontSize": 16,
+    "editor.matchBrackets": "never",
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.minimap.enabled": false,
+    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.hover.enabled": false
+}
