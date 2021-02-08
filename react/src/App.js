@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
 
   tfto: {
     width: '1200px',
-    height: '796px',
+    height: '750px',
     margin: 'auto',
     padding: theme.spacing(2),
     textAlign: 'center'
@@ -370,9 +370,9 @@ function App() {
         </Paper>
       </Box>
 
-{/* // TODO: Complete TFTO scene
+{/* // TODO: Complete TFTO scene  */}
       <Box position='absolute'
-           bottom='140px'
+           bottom='280px'
            left='480px'
            width='500px'>
         <Paper className={classes.paper} elevation={8}>
@@ -402,7 +402,7 @@ function App() {
           </Grid>
         </Paper>
       </Box>        
- */}
+
       <Dialog
         maxWidth={false}
         open={openAnimation}

@@ -3,11 +3,39 @@
 //
 import React from 'react';
 import * as THREE from 'three';
-import { resolution, materials } from './materials';
+// import { resolution, materials } from './materials';
 
+var resolution = new THREE.Vector2(1200, 750);
+var texture = new THREE.TextureLoader().load("data/textures/TFTOInfo.jpg");
+console.dir(texture);
+
+//
+// Materials
+//
+const mat = {'default': 0};
+Object.freeze(mat);
+
+var materials =
+[
+  // Whirlpool
+  new THREE.ShaderMaterial(
+  {
+    uniforms: { u_time:       { value: 1.0        },
+                u_texture:    { value: texture    },
+                u_resolution: { value: resolution },
+                u_a:          { value: 400.0      },
+                u_b:          { value: 200.0      }},
+
+    vertexShader: document.getElementById( 'vertexDefault' ).textContent,
+    fragmentShader: document.getElementById( 'fragmentWhirlpool' ).textContent
+  } )
+];
+
+//
+// Scene
+//
 var mesh;
 var renderer;
-const matIndex = 0;
 class sceneTFTO extends React.Component
 {
   componentDidMount()
@@ -20,15 +48,15 @@ class sceneTFTO extends React.Component
     this.mount.appendChild(renderer.domElement);
 
     const geometry = new THREE.PlaneBufferGeometry( 2, 2 );
-    mesh = new THREE.Mesh(geometry, materials[matIndex]);
+    mesh = new THREE.Mesh(geometry, materials[mat.default]);
     scene.add(mesh);
 
     var animate = function ()
     {
       requestAnimationFrame( animate );
 
-      if(materials[matIndex].uniforms['u_time'])
-         materials[matIndex].uniforms['u_time'].value = performance.now() / 1000;
+      if(materials[mat.default].uniforms['u_time'])
+         materials[mat.default].uniforms['u_time'].value = performance.now() / 1000;
 
       renderer.render(scene, camera);
     };
