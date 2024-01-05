@@ -46,9 +46,7 @@ class sceneWorld1 extends React.Component
     } );
     
     renderer.xr.addEventListener( 'sessionend', function ( event ) {
-      // TODO: Delete 'this' or rendered  component here
-      // document.getElementById('root').remove(renderer.domElement);
-      window.location.reload();
+      onWindowResize();
     } );
 
     // VR Button
@@ -56,11 +54,29 @@ class sceneWorld1 extends React.Component
     vrButton.addEventListener("click", function(event) {
       renderer.setSize( window.innerWidth, window.innerHeight );
     });
-
     this.mount.appendChild( vrButton );
+    
+    //
+    // TODO: Correct exit from VR - Refresh button
+    // window.location.reload();
+    /* 
+    const buttonStyle = {
+      margin: '10px 0'
+    };
+    const button = ({ label, handleClick }) => (
+      <button
+        className="btn btn-default"
+        style={buttonStyle}
+        onClick={handleClick}
+      >
+        {label}
+      </button>
+    );
+    this.mount.appendChild( button );
+    */
 
     // Geometry
-    // DEBUG !
+    // TODO: Sphere projection (?)
     // const geometry = new THREE.SphereGeometry(50);
     
     const geometry = new THREE.BoxGeometry( 100, 100, 100 );
@@ -124,17 +140,13 @@ class sceneWorld1 extends React.Component
       return textures;
     }
 
-
     //
     // onWindowResize
     //
     function onWindowResize(){
-
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-
       renderer.setSize( window.innerWidth, window.innerHeight );
-      // renderer.setSize(resolution.x, resolution.y);
     }
 
     //
