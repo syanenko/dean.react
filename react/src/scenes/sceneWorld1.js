@@ -122,71 +122,12 @@ class sceneWorld1 extends React.Component
       renderer.render(scene, camera);
     };
 */
-
-    // World 1
-    var getTexturesFromAtlasFile = function ( atlasImgUrl, tilesNum ) {
-
-				const textures = [];
-
-				for ( let i = 0; i < tilesNum; i ++ ) {
-
-					textures[ i ] = new THREE.Texture();
-
-				}
-
-				const loader = new THREE.ImageLoader();
-				loader.load( atlasImgUrl, function ( imageObj ) {
-
-					let canvas, context;
-					const tileWidth = imageObj.height;
-
-					for ( let i = 0; i < textures.length; i ++ ) {
-
-						canvas = document.createElement( 'canvas' );
-						context = canvas.getContext( '2d' );
-						canvas.height = tileWidth;
-						canvas.width = tileWidth;
-						context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-						textures[ i ].colorSpace = THREE.SRGBColorSpace;
-						textures[ i ].image = canvas;
-						textures[ i ].needsUpdate = true;
-					}
-
-				} );
-
-				return textures;
-			}
-    
-    var onWindowResize = function(){
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-
-				// renderer.setSize( window.innerWidth, window.innerHeight );
-        renderer.setSize(resolution.x, resolution.y);
-    }
-
-    ///// DEBUG ! 
-    /*
-    const scene = new THREE.Scene();
-    // const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    const camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(resolution.x, resolution.y);
-    this.mount.appendChild(renderer.domElement);
-
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    const cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
-    */
-    /////
-    
+    // Scene
     const scene = new THREE.Scene();
     
     // Camera
     // var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    // var camera = new THREE.PerspectiveCamera( 70, resolution.x / resolution.y, 1, 1000 );
+    // const camera = new THREE.PerspectiveCamera( 70, resolution.x / resolution.y, 1, 1000 );
     const camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
     camera.layers.enable( 1 );
     
@@ -198,16 +139,16 @@ class sceneWorld1 extends React.Component
     renderer.setSize(resolution.x, resolution.y);
 
     this.mount.appendChild(renderer.domElement);
-    //document.body.appendChild( renderer.domElement );
-    //document.body.appendChild( VRButton.createButton( renderer ) );
-    this.mount.appendChild( VRButton.createButton( renderer ) );
-    
-    //renderer.xr.enabled = true;
-    //renderer.xr.setReferenceSpaceType( 'local' );
+    this.mount.appendChild( VRButton.createButton( renderer ) );    
+    // document.body.appendChild( renderer.domElement );
+    // document.body.appendChild( VRButton.createButton( renderer ) );
+        
+    renderer.xr.enabled = true;
+    renderer.xr.setReferenceSpaceType( 'local' );
     
     // Geometry
     // const geometry = new THREE.BoxGeometry( 100, 100, 100 );
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    const geometry = new THREE.BoxGeometry( 1.5, 1.5, 1.5 );
     geometry.scale( 1, 1, - 1 );
 
     const textures = getTexturesFromAtlasFile( 'data/textures/sun_temple_stripe.jpg', 12 );
@@ -234,18 +175,72 @@ class sceneWorld1 extends React.Component
     window.addEventListener( 'resize', onWindowResize );
 
     //
+    // getTexturesFromAtlasFile
+    //
+    function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
+
+      const textures = [];
+
+      for ( let i = 0; i < tilesNum; i ++ ) {
+
+        textures[ i ] = new THREE.Texture();
+
+      }
+
+      const loader = new THREE.ImageLoader();
+      loader.load( atlasImgUrl, function ( imageObj ) {
+
+        let canvas, context;
+        const tileWidth = imageObj.height;
+
+        for ( let i = 0; i < textures.length; i ++ ) {
+
+          canvas = document.createElement( 'canvas' );
+          context = canvas.getContext( '2d' );
+          canvas.height = tileWidth;
+          canvas.width = tileWidth;
+          context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+          textures[ i ].colorSpace = THREE.SRGBColorSpace;
+          textures[ i ].image = canvas;
+          textures[ i ].needsUpdate = true;
+        }
+
+      } );
+
+      return textures;
+    }
+
+
+    //
+    // onWindowResize
+    //
+    function onWindowResize(){
+
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      // renderer.setSize( window.innerWidth, window.innerHeight );
+      renderer.setSize(resolution.x, resolution.y);
+    }
+
+    //
     // Animate
     // 
     function animate() {
       requestAnimationFrame( animate );
       //cube.rotation.x += 0.01;
       //cube.rotation.y += 0.01;
-
       renderer.render( scene, camera );
+      // renderer.setAnimationLoop( render );
     }
 
-    // World END
-    
+    /*
+    // DEBUG !
+    function render() {
+      renderer.render( scene, camera );
+    }
+    */
+
     animate();
   }
 
