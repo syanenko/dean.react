@@ -45,7 +45,7 @@ class sceneTFTO extends React.Component
 
     this.mount.appendChild(renderer.domElement);
 
-    const geometry = new THREE.PlaneBufferGeometry( 2, 2 );
+    const geometry = new THREE.PlaneGeometry( 2, 2 );
     mesh = new THREE.Mesh(geometry, matWhirpool);
     scene.add(mesh);
 

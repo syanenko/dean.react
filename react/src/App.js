@@ -45,7 +45,8 @@ import BirdImage      from './data/images/Bird.png';
 import LogoImage      from './data/images/Logo.png';
 
 import './App.css';
-import { sceneTFTO } from './scenes/sceneTFTO';
+import { sceneTFTO   } from './scenes/sceneTFTO';
+import { sceneWorld1 } from './scenes/sceneWorld1';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -370,7 +371,7 @@ function App() {
         </Paper>
       </Box>
 
-{/* // TODO: Complete TFTO scene
+{ // TODO: Complete TFTO scene
       <Box position='absolute'
            bottom='280px'
            left='480px'
@@ -394,7 +395,10 @@ function App() {
                 <IconButton
                   color="disabled"
                   edge="end"
-                  onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
+                  
+                  // DEBUG !
+                  // onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
+                   onClick={() => handleOpenAnimation(null, sceneWorld1, TFTOInfo, classes.tfto, "World N1")}>
                   <PlayCircleOutlineOutlinedIcon/>
                 </IconButton>
               </Box>
@@ -402,7 +406,7 @@ function App() {
           </Grid>
         </Paper>
       </Box>        
-*/}
+}
       <Dialog
         maxWidth={false}
         open={openAnimation}
