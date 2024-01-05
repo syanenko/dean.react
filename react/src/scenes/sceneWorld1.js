@@ -8,6 +8,7 @@ import { VRButton } from 'three/addons/webxr/VRButton.js';
 // var resolution = new THREE.Vector2(1200, 750);
 var resolution = new THREE.Vector2(window.innerWidth, window.innerHeight);
 // import { resolution, materials } from './materials';
+
 //
 // Materials
 //
@@ -132,8 +133,8 @@ class sceneWorld1 extends React.Component
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
 
-      // renderer.setSize( window.innerWidth, window.innerHeight );
-      renderer.setSize(resolution.x, resolution.y);
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      // renderer.setSize(resolution.x, resolution.y);
     }
 
     //

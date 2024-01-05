@@ -170,9 +170,10 @@ function App() {
   function showScene() {
     ReactDOM.render(
       React.createElement(activeScene),
-      document.getElementById('animationContainer')
+      // DEBUG !
+      // document.getElementById('animationContainer')
+      document.getElementById('root')
     );
-    
   }
 
   const [showInfo, setShowInfo] = React.useState(false);
