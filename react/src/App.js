@@ -378,7 +378,10 @@ function App() {
            left='480px'
            width='500px'>
         <Paper className={classes.paper} elevation={8}>
-          <ButtonBase onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
+          <ButtonBase 
+            // DEBUG !
+            // onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
+            onClick={() => handleOpenAnimation(null, sceneWorld1, TFTOInfo, classes.tfto, "World N1")}>
             <img className={classes.painting} alt="Tales from Topographic Oceans" src={TFTOImage} />
           </ButtonBase>
           <Grid container justify="flex-end" className={classes.title}>
@@ -396,17 +399,16 @@ function App() {
                 <IconButton
                   color="disabled"
                   edge="end"
-                  
                   // DEBUG !
                   // onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
-                   onClick={() => handleOpenAnimation(null, sceneWorld1, TFTOInfo, classes.tfto, "World N1")}>
+                  onClick={() => handleOpenAnimation(null, sceneWorld1, TFTOInfo, classes.tfto, "World N1")}>
                   <PlayCircleOutlineOutlinedIcon/>
                 </IconButton>
               </Box>
             </Grid>
           </Grid>
         </Paper>
-      </Box>        
+      </Box>
 }
       <Dialog
         maxWidth={false}

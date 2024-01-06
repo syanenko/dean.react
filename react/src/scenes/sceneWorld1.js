@@ -25,7 +25,8 @@ class sceneWorld1 extends React.Component
     const scene = new THREE.Scene();
     
     // Camera
-    const camera = new THREE.PerspectiveCamera( 70, resolution.x / resolution.y, 1, 1000 );
+    // const camera = new THREE.PerspectiveCamera( 70, resolution.x / resolution.y, 1, 1000 );
+    const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
     camera.layers.enable( 1 );
         
     // Renderer
@@ -82,7 +83,7 @@ class sceneWorld1 extends React.Component
     const geometry = new THREE.BoxGeometry( 100, 100, 100 );
     geometry.scale( 1, 1, - 1 );
 
-    const textures = getTexturesFromAtlasFile( 'data/textures/sun_temple_stripe.jpg', 12 );
+    const textures = getTexturesFromAtlasFile( 'data/textures/sun_temple_stripe_stereo.jpg', 12 );
     // const textures = getTexturesFromAtlasFile( 'data/textures/Sea_star_2560x1440_VR180.jpg', 12 );
     const materials = [];
     for ( let i = 0; i < 6; i ++ ) {
