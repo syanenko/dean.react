@@ -5,6 +5,7 @@ import React from 'react';
 
 import * as THREE from 'three';
 import { VRButton } from 'three/addons/webxr/VRButton.js';
+import { degToRad } from 'three/src/math/MathUtils';
 // var resolution = new THREE.Vector2(1200, 750);
 var resolution = new THREE.Vector2(window.innerWidth, window.innerHeight);
 // import { resolution, materials } from './materials';
@@ -41,6 +42,9 @@ class sceneWorld1 extends React.Component
     // XR
     renderer.xr.enabled = true;
     renderer.xr.setReferenceSpaceType( 'local' );
+    // DEBUG !
+    // alert(XRWebGLLayer.getNativeFramebufferScaleFactor());
+    renderer.xr.setFramebufferScaleFactor( 4.0 );
     
     renderer.xr.addEventListener( 'sessionstart', function ( event ) {
       renderer.setSize( window.innerWidth, window.innerHeight );
@@ -79,11 +83,12 @@ class sceneWorld1 extends React.Component
     // Geometry
     // TODO: Sphere projection (?)
     // const geometry = new THREE.SphereGeometry(50);
-    
-    const geometry = new THREE.BoxGeometry( 1000, 1000, 1000 );
-    geometry.scale( 1, 1, - 1 );
-    var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_3072x3072.png', 12 ); // + (!)
-    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_2048x2048.png', 12 ); // +    
+
+    var textures = getTexturesFromAtlasFile( 'data/textures/Sea_star_8192x4096_VR180_STEREO.png', 2 );     // +
+    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_4096x4096.png', 6 );     // +
+    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_2048x2048.png', 12 ); // +
+    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_3072x3072.png', 12 ); // +/- (Falls after power reset)
+    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_4096x4096.png', 8 );  // - 
     // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_3584x3584.png', 12 ); // -
     // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_8192x8192.png', 12 ); // -
     // const textures = getTexturesFromAtlasFile( 'data/textures/sun_temple_stripe_stereo.jpg', 12 );
@@ -91,20 +96,53 @@ class sceneWorld1 extends React.Component
     const materials = [];
     for ( let i = 0; i < 6; i ++ ) {       
       materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
+      materials[i].side = THREE.BackSide;
     }
-
-    const skyBox = new THREE.Mesh( geometry, materials );
-    skyBox.layers.set( 1 );
-    scene.add( skyBox );
     
     const materialsR = [];
     for ( let i = 6; i < 12; i ++ ) {
       materialsR.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
     }
 
-    const skyBoxR = new THREE.Mesh( geometry, materialsR );
+    // Test plane
+    /*
+    const plane_geometry = new THREE.PlaneGeometry( 20, 10);
+    const plane = new THREE.Mesh( plane_geometry, materials[0]);
+    plane.layers.set( 1 );
+    plane.translateZ(-10);
+    scene.add( plane );
+    */
+
+    // Test sphere
+    const sphere_geometry = new THREE.SphereGeometry(10, 360, 360, 0, Math.PI);
+
+    // Left eye
+    const sphereL = new THREE.Mesh( sphere_geometry, materials[0]);
+    scene.add( sphereL );
+    sphereL.rotateY(Math.PI);
+    sphereL.translateX(0.11);
+    sphereL.layers.set( 1 );
+
+    // Right eye
+    const sphereR = new THREE.Mesh( sphere_geometry, materials[1]);
+    scene.add( sphereR );
+    sphereR.rotateY(Math.PI);
+    sphereR.translateX(-0.11);
+    sphereR.layers.set( 2 );
+       
+    // skyBox left
+    const geometry = new THREE.BoxGeometry( 100, 100, 100 );
+    geometry.scale( 1, 1, - 1 );
+    
+    const skyBox = new THREE.Mesh( geometry, materials );
+    skyBox.layers.set( 1 );
+    //scene.add( skyBox );
+    
+    // skyBox right
+    //const skyBoxR = new THREE.Mesh( geometry, materialsR );
+    const skyBoxR = new THREE.Mesh( geometry, materials );
     skyBoxR.layers.set( 2 );
-    scene.add( skyBoxR );
+    //scene.add( skyBoxR );
     
     window.addEventListener( 'resize', onWindowResize );
             
@@ -134,7 +172,7 @@ class sceneWorld1 extends React.Component
           canvas.width = tileWidth;
           // DEBUG !
           // context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-          context.drawImage( imageObj, 0, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );          
+          context.drawImage( imageObj, 0, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
           textures[ i ].colorSpace = THREE.SRGBColorSpace;
           textures[ i ].image = canvas;
           textures[ i ].needsUpdate = true;
@@ -165,6 +203,8 @@ class sceneWorld1 extends React.Component
     // Render
     //
     function render() {
+      // DEBUG
+      // sphere.rotateOnAxis(new THREE.Vector3(0,1,0), 0.005 );
       renderer.render( scene, camera );
     }
     
