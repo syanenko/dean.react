@@ -80,13 +80,16 @@ class sceneWorld1 extends React.Component
     // TODO: Sphere projection (?)
     // const geometry = new THREE.SphereGeometry(50);
     
-    const geometry = new THREE.BoxGeometry( 100, 100, 100 );
+    const geometry = new THREE.BoxGeometry( 1000, 1000, 1000 );
     geometry.scale( 1, 1, - 1 );
-
-    const textures = getTexturesFromAtlasFile( 'data/textures/sun_temple_stripe_stereo.jpg', 12 );
-    // const textures = getTexturesFromAtlasFile( 'data/textures/Sea_star_2560x1440_VR180.jpg', 12 );
+    var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_3072x3072.png', 12 ); // + (!)
+    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_2048x2048.png', 12 ); // +    
+    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_3584x3584.png', 12 ); // -
+    // var textures = getTexturesFromAtlasFile( 'data/textures/checker-map_8192x8192.png', 12 ); // -
+    // const textures = getTexturesFromAtlasFile( 'data/textures/sun_temple_stripe_stereo.jpg', 12 );
+    
     const materials = [];
-    for ( let i = 0; i < 6; i ++ ) {
+    for ( let i = 0; i < 6; i ++ ) {       
       materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
     }
 
@@ -102,7 +105,7 @@ class sceneWorld1 extends React.Component
     const skyBoxR = new THREE.Mesh( geometry, materialsR );
     skyBoxR.layers.set( 2 );
     scene.add( skyBoxR );
-
+    
     window.addEventListener( 'resize', onWindowResize );
             
     //
@@ -115,7 +118,6 @@ class sceneWorld1 extends React.Component
       for ( let i = 0; i < tilesNum; i ++ ) {
 
         textures[ i ] = new THREE.Texture();
-
       }
 
       const loader = new THREE.ImageLoader();
@@ -130,7 +132,9 @@ class sceneWorld1 extends React.Component
           context = canvas.getContext( '2d' );
           canvas.height = tileWidth;
           canvas.width = tileWidth;
-          context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+          // DEBUG !
+          // context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+          context.drawImage( imageObj, 0, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );          
           textures[ i ].colorSpace = THREE.SRGBColorSpace;
           textures[ i ].image = canvas;
           textures[ i ].needsUpdate = true;
