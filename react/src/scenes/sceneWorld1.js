@@ -6,9 +6,9 @@ import React from 'react';
 import * as THREE from 'three';
 import { VRButton } from 'three/addons/webxr/VRButton.js';
 import { degToRad } from 'three/src/math/MathUtils';
+
 // var resolution = new THREE.Vector2(1200, 750);
 var resolution = new THREE.Vector2(window.innerWidth, window.innerHeight);
-// import { resolution, materials } from './materials';
 
 //
 // Materials
@@ -44,7 +44,7 @@ class sceneWorld1 extends React.Component
     renderer.xr.setReferenceSpaceType( 'local' );
     // DEBUG !
     // alert(XRWebGLLayer.getNativeFramebufferScaleFactor());
-    renderer.xr.setFramebufferScaleFactor( 4.0 );
+    renderer.xr.setFramebufferScaleFactor( 8.0 );
     
     renderer.xr.addEventListener( 'sessionstart', function ( event ) {
       renderer.setSize( window.innerWidth, window.innerHeight );
@@ -96,7 +96,7 @@ class sceneWorld1 extends React.Component
     const materials = [];
     for ( let i = 0; i < 6; i ++ ) {       
       materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
-      materials[i].side = THREE.BackSide;
+      materials[i].side = THREE.DoubleSide;
     }
     
     const materialsR = [];
