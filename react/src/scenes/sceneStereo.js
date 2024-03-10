@@ -5,10 +5,6 @@ import React from 'react';
 
 import * as THREE from 'three';
 import { VRButton } from 'three/addons/webxr/VRButton.js';
-import { degToRad } from 'three/src/math/MathUtils';
-
-// var resolution = new THREE.Vector2(1200, 750);
-var resolution = new THREE.Vector2(window.innerWidth, window.innerHeight);
 
 //
 // Materials

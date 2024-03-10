@@ -372,7 +372,7 @@ function App() {
         </Paper>
       </Box>
 
-      {/* TODO: Complete TFTO scene */}
+      {/* TODO: Complete TFTO scene
       <Box position='absolute'
            bottom='280px'
            left='480px'
@@ -409,7 +409,7 @@ function App() {
           </Grid>
         </Paper>
       </Box>
-
+      */}
       <Dialog
         maxWidth={false}
         open={openAnimation}
