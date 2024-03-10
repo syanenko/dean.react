@@ -79,11 +79,11 @@ class sceneTFTO extends React.Component
     loader.load(
       'data/objects/Fish_01.glb',
       function ( gltf ) {
-
         mixer = new THREE.AnimationMixer( gltf.scene );
-        var action = mixer.clipAction( gltf.animations[ 0 ] );
+        var action = mixer.clipAction( gltf.animations[0] );
         action.play();
         scene.add( gltf.scene );
+        gltf.scene.position.y = -40;
       },
 
       function ( xhr ) {
