@@ -3,11 +3,11 @@
 //
 import React from 'react';
 import * as THREE from 'three';
-// import { resolution, materials } from './materials';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-var resolution = new THREE.Vector2(1200, 750);
+// var resolution = new THREE.Vector2(1920, 1200);
+var resolution = new THREE.Vector2(window.innerWidth, window.innerHeight);
 var texture = new THREE.TextureLoader().load("data/textures/TFTOInfo.jpg");
-console.dir(texture);
 
 //
 // Materials
@@ -34,30 +34,66 @@ var matWhirpool = new THREE.ShaderMaterial(
 //
 var mesh;
 var renderer;
+var mixer;
+var speed = 0.3;
+
 class sceneTFTO extends React.Component
 {
   componentDidMount()
   {
     const scene  = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+    // const camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+    const camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
+    // camera.position.y = 100;
+    camera.position.z = 300;
+    camera.lookAt(0,0,0);
+
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(resolution.x, resolution.y);
-
     this.mount.appendChild(renderer.domElement);
-
-    const geometry = new THREE.PlaneGeometry( 2, 2 );
+    
+    let scale = 3; // TODO: Find better way
+    const geometry = new THREE.PlaneGeometry( resolution.x / scale, resolution.y / scale);
     mesh = new THREE.Mesh(geometry, matWhirpool);
     scene.add(mesh);
 
+    var clock = new THREE.Clock();
+
+    // Animate
     var animate = function ()
     {
       requestAnimationFrame( animate );
-
+/*
       if(matWhirpool.uniforms['u_time'])
          matWhirpool.uniforms['u_time'].value = performance.now() / 1000;
+*/
+      // Fish animation
+      var delta = clock.getDelta();
+  		if ( mixer ) mixer.update( delta * speed);
 
       renderer.render(scene, camera);
     };
+
+    // Load fish
+    const loader = new GLTFLoader();
+    loader.load(
+      'data/objects/Fish_01.glb',
+      function ( gltf ) {
+
+        mixer = new THREE.AnimationMixer( gltf.scene );
+        var action = mixer.clipAction( gltf.animations[ 0 ] );
+        action.play();
+        scene.add( gltf.scene );
+      },
+
+      function ( xhr ) {
+        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+      },
+
+      function ( error ) {
+        console.log( 'An error happened' );
+      }
+    );
 
     animate();
   }

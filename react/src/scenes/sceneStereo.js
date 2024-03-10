@@ -18,7 +18,7 @@ Object.freeze(mat);
 
 var mesh;
 var renderer;
-class sceneWorld1 extends React.Component
+class sceneStereo extends React.Component
 {
   componentDidMount()
   {
@@ -217,4 +217,4 @@ class sceneWorld1 extends React.Component
   }
 }
 
-export {sceneWorld1, mesh, renderer};
+export {sceneStereo, mesh, renderer};

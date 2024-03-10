@@ -46,7 +46,7 @@ import LogoImage      from './data/images/Logo.png';
 
 import './App.css';
 import { sceneTFTO   } from './scenes/sceneTFTO';
-import { sceneWorld1 } from './scenes/sceneWorld1';
+// import { sceneStereo } from './scenes/sceneStereo';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -372,8 +372,7 @@ function App() {
         </Paper>
       </Box>
 
-{ // TODO: Complete TFTO scene
-/*
+      {/* TODO: Complete TFTO scene */}
       <Box position='absolute'
            bottom='280px'
            left='480px'
@@ -381,8 +380,8 @@ function App() {
         <Paper className={classes.paper} elevation={8}>
           <ButtonBase 
             // DEBUG !
-            // onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
-            onClick={() => handleOpenAnimation(null, sceneWorld1, TFTOInfo, classes.tfto, "World N1")}>
+            // onClick={() => handleOpenAnimation(null, sceneStereo, TFTOInfo, classes.tfto, "World N1")}>
+            onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
             <img className={classes.painting} alt="Tales from Topographic Oceans" src={TFTOImage} />
           </ButtonBase>
           <Grid container justify="flex-end" className={classes.title}>
@@ -401,8 +400,8 @@ function App() {
                   color="disabled"
                   edge="end"
                   // DEBUG !
-                  // onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
-                  onClick={() => handleOpenAnimation(null, sceneWorld1, TFTOInfo, classes.tfto, "World N1")}>
+                  // onClick={() => handleOpenAnimation(null, sceneStereo, TFTOInfo, classes.tfto, "World N1")}>
+                  onClick={() => handleOpenAnimation(null, sceneTFTO, TFTOInfo, classes.tfto, "Tales from Topographic Oceans")}>
                   <PlayCircleOutlineOutlinedIcon/>
                 </IconButton>
               </Box>
@@ -410,8 +409,7 @@ function App() {
           </Grid>
         </Paper>
       </Box>
-*/      
-}
+
       <Dialog
         maxWidth={false}
         open={openAnimation}
